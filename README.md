@@ -12,3 +12,5 @@ What we need to do:
 1. Implement registration and login
 2. CRUD functionality for recipes
 3. CRUD functionality for tags?
+
+** account profile pages?
