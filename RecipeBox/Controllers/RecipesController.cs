@@ -51,19 +51,17 @@ namespace RecipeBox.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    // public ActionResult Details(int id)
-    // {
-    //   var thisRecipe = _db.Recipes
-    //     .Include(recipe => recipe.JoinEntities)
-    //     .ThenInclude(join => join.Tag).
-    //     .FirstOrDefault(recipe => recipe.RecipeId == id);
-    //   return View(thisRecipe);
-    // }
-    public async Task<ActionResult> Details(int id)
+
+    public ActionResult Details(int id)
     {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      ViewBag.thisUser = currentUser;
+      var thisRecipe = _db.Recipes
+        .Include(recipe => recipe.JoinEntities)
+        .ThenInclude(join => join.Tag)
+        .FirstOrDefault(recipe => recipe.RecipeId == id);
+      return View(thisRecipe);
+    }
+    public ActionResult PublicDetails(int id)
+    {
       var thisRecipe = _db.Recipes
         .Include(recipe => recipe.JoinEntities)
         .ThenInclude(join => join.Tag)

@@ -18,7 +18,7 @@
 <ul>
     @foreach (Recipe recipe in Model)
     {
-        <li>@Html.ActionLink($"{recipe.Name}", "Details", "Recipes", new { id = recipe.RecipeId})</li>
+        <li>@Html.ActionLink($"{recipe.Name}", "PublicDetails", "Recipes", new { id = recipe.RecipeId}) | Recipe by: @recipe.User.ToString()</li>
     }
 </ul>
 
