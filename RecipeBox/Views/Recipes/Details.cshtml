@@ -1,0 +1,39 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBox.Models.Recipe
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+<h2>@Html.DisplayFor(model => model.Name) by @Html.DisplayFor(model => model.User.Email)</h2>
+
+<h4>@Html.DisplayNameFor(model => model.Ingredients)</h4>
+<p>@Html.DisplayFor(model => model.Ingredients)</p>
+
+<h4>@Html.DisplayNameFor(model => model.Instructions)</h4>
+<p>@Html.DisplayFor(model => model.Instructions)</p>
+
+@if (Model.JoinEntities.Count == 0 )
+{
+  <p>This recipe has no tags.</p>
+}
+else
+{
+  <h4>Tags</h4>
+  <ul>
+  @foreach (var join in Model.JoinEntities)
+  {
+    <li>join.Tag.Category</li>
+  }
+  </ul>
+}
+
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
+
+
+
+<p>@Html.ActionLink("Back to your recipes", "Index", "Recipes")</p>
+<p>@Html.ActionLink("Edit this recipe", "Edit", "Recipes")</p>
+<p>@Html.ActionLink("Delete this recipe", "Delete", "Recipes")</p>

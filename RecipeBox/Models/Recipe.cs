@@ -10,7 +10,7 @@ namespace RecipeBox.Models
       this.JoinEntities = new HashSet<RecipeTag>();
     }
     public int RecipeId { get; set; }
-    public int Name { get; set; }
+    public string Name { get; set; }
 
     [StringLength(10000)]
     public string Instructions { get; set; }
